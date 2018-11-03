@@ -8,6 +8,8 @@
 		"name": "Guillaume Dominici",
 		"url": "http://dominici.io"
 	},
+	"scripts": {
+	},
 	"engines": {
 		"node": ">=8"
 	},
@@ -22,7 +24,8 @@
 		"random-int": "^1.0.0",
 		"redux-saga": "^0.16.2"
 	},
-	"devDependencies": {},
+	"devDependencies": {
+	},
 	"peerDependencies": {
 		"react": "^16.6.0",
 		"react-redux": "^5.1.0",
