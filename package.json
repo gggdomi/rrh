@@ -1,0 +1,31 @@
+{
+	"name": "@gggdomi/rrh",
+	"version": "0.0.1",
+	"description": "",
+	"license": "MIT",
+	"main": "src/index.js",
+	"author": {
+		"name": "Guillaume Dominici",
+		"url": "http://dominici.io"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"files": [
+		"src/*.js"
+	],
+	"keywords": [
+		""
+	],
+	"dependencies": {
+		"axios": "^0.18.0",
+		"random-int": "^1.0.0",
+		"redux-saga": "^0.16.2"
+	},
+	"devDependencies": {},
+	"peerDependencies": {
+		"react": "^16.6.0",
+		"react-redux": "^5.1.0",
+		"redux": "^4.0.1"
+	}
+}
