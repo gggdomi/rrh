@@ -9,6 +9,7 @@
 		"url": "http://dominici.io"
 	},
 	"scripts": {
+		"test": "ava"
 	},
 	"engines": {
 		"node": ">=8"
@@ -25,10 +26,19 @@
 		"redux-saga": "^0.16.2"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.1.2",
+		"@babel/preset-env": "^7.1.0",
+		"@babel/register": "^7.0.0",
+		"ava": "^1.0.0-rc.1"
 	},
 	"peerDependencies": {
 		"react": "^16.6.0",
 		"react-redux": "^5.1.0",
 		"redux": "^4.0.1"
+	},
+	"ava": {
+		"require": [
+			"@babel/register"
+		]
 	}
 }
