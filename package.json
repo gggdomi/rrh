@@ -1,6 +1,6 @@
 {
 	"name": "@gggdomi/rrh",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "",
 	"license": "MIT",
 	"main": "src/index.js",
@@ -22,14 +22,14 @@
 	],
 	"dependencies": {
 		"axios": "^0.18.0",
-		"random-int": "^1.0.0",
-		"redux-saga": "^0.16.2"
+		"random-int": "^1.0.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.1.2",
 		"@babel/preset-env": "^7.1.0",
 		"@babel/register": "^7.0.0",
-		"ava": "^1.0.0-rc.1"
+		"ava": "^1.0.0-rc.1",
+		"redux-saga": "^0.16.2"
 	},
 	"peerDependencies": {
 		"react": "^16.6.0",
