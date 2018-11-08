@@ -95,7 +95,8 @@ const fam = (
         return {
           ...state,
           loading: false,
-          error: formatError(action.error),
+          error: action.error,
+          errorMessage: formatError(action.error),
           success: false,
           reqIds: editReqIds(state.reqIds, action.reqId, 'error'),
         }
