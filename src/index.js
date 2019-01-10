@@ -130,6 +130,7 @@ const fam = (
 export default {
   new: fam,
   backURL: null,
+  plugins: [],
 }
 
 const _fetchActions = {}
