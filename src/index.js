@@ -29,6 +29,7 @@ const fam = (
 
     isLoginRoute = false,
     isLogoutRoute = false,
+    ignoreBaseURL = false,
   } = {}
 ) => {
   const actionTypes = {
@@ -50,6 +51,7 @@ const fam = (
     authenticated,
     postData: method === 'POST' ? postData : null,
     reqId: reqId || randint(0, 999999),
+    ignoreBaseURL,
   })
 
   const preSuccessAction = (rawData, reqId) => ({

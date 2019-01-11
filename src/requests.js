@@ -4,9 +4,18 @@ import axios from 'axios'
 
 import rrh from './'
 
-export const axiosHelper = ({ route, method = 'GET', postData, auth }) => {
+export const axiosHelper = ({
+  route,
+  method = 'GET',
+  postData,
+  auth,
+  ignoreBaseURL,
+}) => {
   // route must be without starting or trailing slash
-  let url = rrh.backURL && !route.startsWith('http') ? rrh.backURL : ''
+  let url =
+    !ignoreBaseURL && rrh.backURL && !route.startsWith('http')
+      ? rrh.backURL
+      : ''
   url += route
 
   let options = {

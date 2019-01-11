@@ -23,6 +23,7 @@ export function* networkingSaga() {
         method: action.method,
         authenticated: action.authenticated,
         postData: action.postData,
+        ignoreBaseURL: action.ignoreBaseURL,
       })
 
       if (response) {
