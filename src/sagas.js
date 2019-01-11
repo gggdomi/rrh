@@ -39,7 +39,7 @@ export function* networkingSaga() {
         yield put(actions.Fail(error, action.reqId))
         // if (actions.displayFailAlert) toast.error(formatError(error))
         /*
-        */
+         */
       }
     }
   })

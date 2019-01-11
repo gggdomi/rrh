@@ -1,44 +1,44 @@
 {
-	"name": "@gggdomi/rrh",
-	"version": "0.1.1",
-	"description": "",
-	"license": "MIT",
-	"main": "src/index.js",
-	"author": {
-		"name": "Guillaume Dominici",
-		"url": "http://dominici.io"
-	},
-	"scripts": {
-		"test": "ava"
-	},
-	"engines": {
-		"node": ">=8"
-	},
-	"files": [
-		"src/*.js"
-	],
-	"keywords": [
-		""
-	],
-	"dependencies": {
-		"axios": "^0.18.0",
-		"random-int": "^1.0.0"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.1.2",
-		"@babel/preset-env": "^7.1.0",
-		"@babel/register": "^7.0.0",
-		"ava": "^1.0.0-rc.1",
-		"redux-saga": "^0.16.2"
-	},
-	"peerDependencies": {
-		"react": "^16.6.0",
-		"react-redux": "^5.1.0",
-		"redux": "^4.0.1"
-	},
-	"ava": {
-		"require": [
-			"@babel/register"
-		]
-	}
+  "name": "@gggdomi/rrh",
+  "version": "0.1.1",
+  "description": "",
+  "license": "MIT",
+  "main": "src/index.js",
+  "author": {
+    "name": "Guillaume Dominici",
+    "url": "http://dominici.io"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "src/*.js"
+  ],
+  "keywords": [
+    ""
+  ],
+  "dependencies": {
+    "axios": "^0.18.0",
+    "random-int": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/register": "^7.0.0",
+    "ava": "^1.0.0-rc.1",
+    "redux-saga": "^0.16.2"
+  },
+  "peerDependencies": {
+    "react": "^16.6.0",
+    "react-redux": "^5.1.0",
+    "redux": "^4.0.1"
+  },
+  "ava": {
+    "require": [
+      "@babel/register"
+    ]
+  }
 }
