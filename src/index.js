@@ -131,7 +131,7 @@ const fam = (
 
 export default {
   new: fam,
-  backURL: null,
+  baseURL: null,
   plugins: [],
 }
 

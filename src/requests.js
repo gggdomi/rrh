@@ -13,8 +13,8 @@ export const axiosHelper = ({
 }) => {
   // route must be without starting or trailing slash
   let url =
-    !ignoreBaseURL && rrh.backURL && !route.startsWith('http')
-      ? rrh.backURL
+    !ignoreBaseURL && rrh.baseURL && !route.startsWith('http')
+      ? rrh.baseURL
       : ''
   url += route
 
