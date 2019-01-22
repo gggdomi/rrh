@@ -1,6 +1,7 @@
 {
   "name": "@gggdomi/rrh",
-  "version": "0.1.3",
+  "version": "0.1.4",
+  "repository": "github:gggdomi/rrh",
   "description": "",
   "license": "MIT",
   "main": "src/index.js",
