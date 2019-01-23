@@ -12,11 +12,20 @@ const editReqIds = (reqIds, reqId, value) => {
 
 const fam = (groupName, route, options = {}) => {
   const {
-    method = 'GET', // may be POST, PUT...
+    // method, forwarded to axios
+    method = 'GET',
+
     // set to true if we need to do intermediate operations (ex: data transformation) before dispatching .Success()
     hasPresuccess = false,
+
+    // if we use an absolute url for this request
     ignoreBaseURL = false,
-    ...more // used by plugins
+
+    // automatically store request data in reducer if true
+    storeData = false,
+
+    // used by plugins
+    ...more
   } = options
 
   const actionTypes = {
@@ -95,7 +104,7 @@ const fam = (groupName, route, options = {}) => {
 
   const uiReducer = (
     state = {
-      fresh: true,      // True until any request is fired
+      fresh: true, // True until any request is fired
       loading: false,
       error: null,
       success: false,
@@ -114,6 +123,8 @@ const fam = (groupName, route, options = {}) => {
           reqIds: editReqIds(state.reqIds, action.reqId, 'loading'),
         }
       case actionTypes.SUCCESS:
+        const dataToStore = storeData ? action.data : undefined
+
         return {
           ...state,
           fresh: false,
@@ -121,7 +132,7 @@ const fam = (groupName, route, options = {}) => {
           error: null,
           success: true,
           reqIds: editReqIds(state.reqIds, action.reqId, 'success'),
-          data: action.data,
+          data: dataToStore,
         }
       case actionTypes.FAIL:
         return {
