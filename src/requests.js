@@ -7,7 +7,7 @@ import rrh from './'
 export const axiosHelper = ({
   route,
   method = 'GET',
-  postData,
+  data,
   auth,
   ignoreBaseURL,
 }) => {
@@ -21,8 +21,7 @@ export const axiosHelper = ({
   let options = {
     url,
     method,
-    data: postData,
-    withCredentials: true,
+    data,
   }
 
   for (let p of rrh.plugins) {

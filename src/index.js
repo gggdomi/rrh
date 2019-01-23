@@ -10,28 +10,15 @@ const editReqIds = (reqIds, reqId, value) => {
   return { ...reqIds, [reqId]: value }
 }
 
-const fam = (
-  groupName,
-  route,
-  {
-    method = 'GET', // may be POST
-    authenticated = true, // set to true to attach JWT Token to request
-
+const fam = (groupName, route, options = {}) => {
+  const {
+    method = 'GET', // may be POST, PUT...
     // set to true if we need to do intermediate operations (ex: data transformation) before dispatching .Success()
-    // (notably used for login)
     hasPresuccess = false,
-
-    // text content of the alert (null: no alert)
-    successAlert = null,
-
-    // set to false if you don't want alerts when a request fail
-    displayFailAlert = true,
-
-    isLoginRoute = false,
-    isLogoutRoute = false,
     ignoreBaseURL = false,
-  } = {}
-) => {
+    ...more // used by plugins
+  } = options
+
   const actionTypes = {
     START: `@RRH/${groupName}_START`,
     PRESUCCESS: `@RRH/${groupName}_PRESUCCESS`,
@@ -39,38 +26,72 @@ const fam = (
     FAIL: `@RRH/${groupName}_FAIL`,
   }
 
-  const startAction = (
-    postData = null,
-    reqId = null,
-    overrideRoute = null
-  ) => ({
-    type: actionTypes.START,
-    route:
-      (overrideRoute || route) + (method === 'GET' && postData ? postData : ''),
-    method,
-    authenticated,
-    postData: method === 'POST' ? postData : null,
-    reqId: reqId || randint(0, 999999),
-    ignoreBaseURL,
-  })
+  const startAction = params => {
+    const {
+      data = null,
+      urlSuffix = '',
+      reqId = null,
+      overrideRoute = null,
+      ...moreParams
+    } = params
 
-  const preSuccessAction = (rawData, reqId) => ({
-    type: actionTypes.PRESUCCESS,
-    rawData,
-    reqId,
-  })
+    let action = {
+      type: actionTypes.START,
+      route: (overrideRoute || route) + urlSuffix,
+      method,
+      data,
+      reqId: reqId || randint(0, 999999),
+      ignoreBaseURL,
+    }
 
-  const successAction = (data, reqId) => ({
-    type: actionTypes.SUCCESS,
-    data,
-    reqId,
-  })
+    for (let p of rrh.plugins) {
+      action = p.enhanceStartAction(action, params, options)
+    }
 
-  const failAction = (error, reqId) => ({
-    type: actionTypes.FAIL,
-    error,
-    reqId,
-  })
+    return action
+  }
+
+  const preSuccessAction = (response, startAction) => {
+    return {
+      type: actionTypes.PRESUCCESS,
+      response,
+      rawData: response.data,
+      reqId: startAction.reqId,
+      startAction,
+    }
+  }
+
+  const successAction = (response, startAction) => {
+    let action = {
+      type: actionTypes.SUCCESS,
+      response,
+      data: response.data,
+      reqId: startAction.reqId,
+      startAction,
+    }
+
+    for (let p of rrh.plugins) {
+      action = p.enhanceSuccessAction(action, options)
+    }
+
+    return action
+  }
+
+  const failAction = (response, startAction) => {
+    let action = {
+      type: actionTypes.FAIL,
+      response,
+      error: response.error,
+      reqId: startAction.reqId,
+      startAction,
+    }
+
+    for (let p of rrh.plugins) {
+      action = p.enhanceFailAction(action, options)
+    }
+
+    return action
+  }
 
   const uiReducer = (
     state = { loading: false, error: false, success: false, reqIds: {} },
@@ -92,6 +113,7 @@ const fam = (
           error: null,
           success: true,
           reqIds: editReqIds(state.reqIds, action.reqId, 'success'),
+          data: action.data,
         }
       case actionTypes.FAIL:
         return {
@@ -120,8 +142,7 @@ const fam = (
     uiReducer,
     successAlert,
     displayFailAlert,
-    isLoginRoute,
-    isLogoutRoute,
+    ...more,
   }
 
   _fetchActions[groupName] = actions
@@ -129,11 +150,13 @@ const fam = (
   return actions
 }
 
-export default {
+const rrh = {
   new: fam,
   baseURL: null,
   plugins: [],
 }
+
+export default rrh
 
 const _fetchActions = {}
 const _uiReducers = {}

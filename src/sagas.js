@@ -16,13 +16,13 @@ export function* networkingSaga() {
     const actions = rrhActions[groupName]
 
     if (!action.route) {
-      yield put(actions.Fail(`No route specified in ${action.type}`))
+      yield put(actions.Fail(`No route in ${action.type}`, action.reqId))
     } else {
       const { response, error } = yield call(axiosHelper, {
         route: action.route,
         method: action.method,
         authenticated: action.authenticated,
-        postData: action.postData,
+        data: action.data,
         ignoreBaseURL: action.ignoreBaseURL,
       })
 
@@ -32,9 +32,9 @@ export function* networkingSaga() {
         }
 
         if (actions.hasPresuccess)
-          yield put(actions.PreSuccess(response.data, action.reqId))
+          yield put(actions.PreSuccess(response, action))
         else {
-          yield put(actions.Success(response.data, action.reqId))
+          yield put(actions.Success(response, action))
         }
       } else {
         yield put(actions.Fail(error, action.reqId))
