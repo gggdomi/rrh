@@ -94,13 +94,20 @@ const fam = (groupName, route, options = {}) => {
   }
 
   const uiReducer = (
-    state = { loading: false, error: false, success: false, reqIds: {} },
+    state = {
+      fresh: true,      // True until any request is fired
+      loading: false,
+      error: null,
+      success: false,
+      reqIds: {},
+    },
     action
   ) => {
     switch (action.type) {
       case actionTypes.START:
         return {
           ...state,
+          fresh: false,
           loading: true,
           error: null,
           success: false,
@@ -109,6 +116,7 @@ const fam = (groupName, route, options = {}) => {
       case actionTypes.SUCCESS:
         return {
           ...state,
+          fresh: false,
           loading: false,
           error: null,
           success: true,
@@ -118,6 +126,7 @@ const fam = (groupName, route, options = {}) => {
       case actionTypes.FAIL:
         return {
           ...state,
+          fresh: false,
           loading: false,
           error: action.error,
           errorMessage: formatError(action.error),
