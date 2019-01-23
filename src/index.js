@@ -54,7 +54,8 @@ const fam = (groupName, route, options = {}) => {
     }
 
     for (let p of rrh.plugins) {
-      action = p.enhanceStartAction(action, params, options)
+      if (p.enhanceStartAction)
+        action = p.enhanceStartAction(action, params, options)
     }
 
     return action
@@ -80,7 +81,8 @@ const fam = (groupName, route, options = {}) => {
     }
 
     for (let p of rrh.plugins) {
-      action = p.enhanceSuccessAction(action, options)
+      if (p.enhanceSuccessAction)
+        action = p.enhanceSuccessAction(action, options)
     }
 
     return action
@@ -96,7 +98,7 @@ const fam = (groupName, route, options = {}) => {
     }
 
     for (let p of rrh.plugins) {
-      action = p.enhanceFailAction(action, options)
+      if (p.enhanceFailAction) action = p.enhanceFailAction(action, options)
     }
 
     return action

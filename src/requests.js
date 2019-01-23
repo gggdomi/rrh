@@ -25,7 +25,7 @@ export const axiosHelper = ({
   }
 
   for (let p of rrh.plugins) {
-    options = p.beforeRequest(options)
+    if (p.beforeRequest) options = p.beforeRequest(options)
   }
 
   return axios
