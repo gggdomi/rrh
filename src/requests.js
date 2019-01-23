@@ -4,28 +4,22 @@ import axios from 'axios'
 
 import rrh from './'
 
-export const axiosHelper = ({
-  route,
-  method = 'GET',
-  data,
-  auth,
-  ignoreBaseURL,
-}) => {
-  // route must be without starting or trailing slash
+export const axiosHelper = action => {
   let url =
-    !ignoreBaseURL && rrh.baseURL && !route.startsWith('http')
+    !action.ignoreBaseURL && rrh.baseURL && !action.route.startsWith('http')
       ? rrh.baseURL
       : ''
-  url += route
+  url += action.route
 
   let options = {
+    ...action.axiosOptions,
     url,
-    method,
-    data,
+    method: action.method,
+    data: action.data,
   }
 
   for (let p of rrh.plugins) {
-    if (p.beforeRequest) options = p.beforeRequest(options)
+    if (p.beforeRequest) options = p.beforeRequest(action, options)
   }
 
   return axios

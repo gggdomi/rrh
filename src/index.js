@@ -24,6 +24,9 @@ const fam = (groupName, route, options = {}) => {
     // automatically store request data in reducer if true
     storeData = false,
 
+    // forwarded to axios
+    axiosOptions = {},
+
     // used by plugins
     ...more
   } = options
@@ -51,6 +54,7 @@ const fam = (groupName, route, options = {}) => {
       data,
       reqId: reqId || randint(0, 999999),
       ignoreBaseURL,
+      axiosOptions,
     }
 
     for (let p of rrh.plugins) {

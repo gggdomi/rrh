@@ -18,13 +18,7 @@ export function* networkingSaga() {
     if (!action.route) {
       yield put(actions.Fail(`No route in ${action.type}`, action.reqId))
     } else {
-      const { response, error } = yield call(axiosHelper, {
-        route: action.route,
-        method: action.method,
-        authenticated: action.authenticated,
-        data: action.data,
-        ignoreBaseURL: action.ignoreBaseURL,
-      })
+      const { response, error } = yield call(axiosHelper, action)
 
       if (response) {
         if (actions.successAlert) {
