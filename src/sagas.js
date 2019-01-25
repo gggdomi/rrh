@@ -1,12 +1,9 @@
 // Dispatch request and success/fail actions for all rrhActions
 
 import { call, put, takeEvery } from 'redux-saga/effects'
-//import { toast } from 'react-toastify'
-
 import { axiosHelper } from './requests'
 //import { formatError } from './misc'
 import { rrhActions, rrhStartRegex } from './'
-// import { removeCredentialsAction } from 'auth/actions'
 
 export function* networkingSaga() {
   yield takeEvery(action => action.type.match(rrhStartRegex), function*(
@@ -21,10 +18,6 @@ export function* networkingSaga() {
       const { response, error } = yield call(axiosHelper, action)
 
       if (response) {
-        if (actions.successAlert) {
-          // toast.success(actions.successAlert, { autoClose: 2000 })
-        }
-
         if (actions.hasPresuccess)
           yield put(actions.PreSuccess(response, action))
         else {
@@ -32,9 +25,6 @@ export function* networkingSaga() {
         }
       } else {
         yield put(actions.Fail(error, action.reqId))
-        // if (actions.displayFailAlert) toast.error(formatError(error))
-        /*
-         */
       }
     }
   })

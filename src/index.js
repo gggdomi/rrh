@@ -166,8 +166,6 @@ const fam = (groupName, route, options = {}) => {
     Success: successAction,
     Fail: failAction,
     uiReducer,
-    successAlert,
-    displayFailAlert,
     ...more,
   }
 
