@@ -9,8 +9,7 @@ export function* networkingSaga() {
   yield takeEvery(action => action.type.match(rrhStartRegex), function*(
     action
   ) {
-    const groupName = action.type.match(rrhStartRegex)[1]
-    const actions = rrhActions[groupName]
+    const actions = rrhActions[action.groupName]
 
     if (!action.route) {
       yield put(actions.Fail(`No route in ${action.type}`, action.reqId))

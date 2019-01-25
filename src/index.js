@@ -55,6 +55,7 @@ const fam = (groupName, route, options = {}) => {
       reqId: reqId || randint(0, 999999),
       ignoreBaseURL,
       axiosOptions,
+      groupName,
     }
 
     for (let p of rrh.plugins) {
@@ -72,6 +73,7 @@ const fam = (groupName, route, options = {}) => {
       rawData: response.data,
       reqId: startAction.reqId,
       startAction,
+      groupName,
     }
   }
 
@@ -82,6 +84,7 @@ const fam = (groupName, route, options = {}) => {
       data: response.data,
       reqId: startAction.reqId,
       startAction,
+      groupName,
     }
 
     for (let p of rrh.plugins) {
@@ -99,6 +102,7 @@ const fam = (groupName, route, options = {}) => {
       error: response.error,
       reqId: startAction.reqId,
       startAction,
+      groupName,
     }
 
     for (let p of rrh.plugins) {
