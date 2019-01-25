@@ -23,7 +23,7 @@ export function* networkingSaga() {
           yield put(actions.Success(response, action))
         }
       } else {
-        yield put(actions.Fail(error, action.reqId))
+        yield put(actions.Fail(error, action))
       }
     }
   })

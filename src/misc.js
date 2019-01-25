@@ -1,6 +1,6 @@
 export const formatError = err => {
   console.error(err)
-  return err.message
+  return err ? err.message : err
   /*
   if (err.response) {
     if (err.response.status === 401) {

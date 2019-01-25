@@ -38,7 +38,7 @@ const fam = (groupName, route, options = {}) => {
     FAIL: `@RRH/${groupName}_FAIL`,
   }
 
-  const startAction = params => {
+  const startAction = (params = {}) => {
     const {
       data = null,
       urlSuffix = '',
@@ -95,11 +95,11 @@ const fam = (groupName, route, options = {}) => {
     return action
   }
 
-  const failAction = (response, startAction) => {
+  const failAction = (error, startAction) => {
     let action = {
       type: actionTypes.FAIL,
-      response,
-      error: response.error,
+      response: error.response,
+      error: error,
       reqId: startAction.reqId,
       startAction,
       groupName,
