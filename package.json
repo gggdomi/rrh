@@ -30,12 +30,13 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/register": "^7.0.0",
     "ava": "^1.0.0-rc.1",
-    "redux-saga": "^0.16.2"
+    "redux-saga": "^1.0.0"
   },
   "peerDependencies": {
     "react": "^16.6.0",
     "react-redux": "^5.1.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "redux-saga": "^1.0.0"
   },
   "ava": {
     "require": [
