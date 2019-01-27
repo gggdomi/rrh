@@ -117,6 +117,7 @@ const fam = (groupName, route, options = {}) => {
       fresh: true, // True until any request is fired
       loading: false,
       error: null,
+      errorMessage: null,
       success: false,
       reqIds: {},
     },
@@ -129,6 +130,7 @@ const fam = (groupName, route, options = {}) => {
           fresh: false,
           loading: true,
           error: null,
+          errorMessage: null,
           success: false,
           reqIds: editReqIds(state.reqIds, action.reqId, 'loading'),
         }
@@ -140,6 +142,7 @@ const fam = (groupName, route, options = {}) => {
           fresh: false,
           loading: false,
           error: null,
+          errorMessage: null,
           success: true,
           reqIds: editReqIds(state.reqIds, action.reqId, 'success'),
           data: dataToStore,
@@ -150,7 +153,7 @@ const fam = (groupName, route, options = {}) => {
           fresh: false,
           loading: false,
           error: action.error,
-          errorMessage: formatError(action.error),
+          errorMessage: rrh.getErrorMessage(action.error),
           success: false,
           reqIds: editReqIds(state.reqIds, action.reqId, 'error'),
         }
@@ -182,6 +185,7 @@ const rrh = {
   new: fam,
   baseURL: null,
   plugins: [],
+  getErrorMessage: formatError,
 }
 
 export default rrh
