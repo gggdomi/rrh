@@ -2,15 +2,12 @@
   "name": "@gggdomi/rrh",
   "version": "0.1.4",
   "repository": "github:gggdomi/rrh",
-  "description": "",
+  "description": "Helpers to remove boilerplate when doing common network operations with Redux.",
   "license": "MIT",
   "main": "src/index.js",
   "author": {
     "name": "Guillaume Dominici",
     "url": "http://dominici.io"
-  },
-  "scripts": {
-    "test": "ava"
   },
   "engines": {
     "node": ">=8"
@@ -19,7 +16,13 @@
     "src/*.js"
   ],
   "keywords": [
-    ""
+    "redux requests",
+    "requests helper",
+    "redux-saga requests",
+    "redux boilerplate",
+    "redux fetch",
+    "saga requests",
+    "redux api helper"
   ],
   "dependencies": {
     "axios": "^0.18.0",
@@ -31,7 +34,6 @@
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/register": "^7.0.0",
-    "ava": "^1.0.0-rc.1",
     "redux-saga": "^1.0.0"
   },
   "peerDependencies": {
@@ -39,10 +41,5 @@
     "react-redux": "^5.1.0",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.0"
-  },
-  "ava": {
-    "require": [
-      "@babel/register"
-    ]
   }
 }
