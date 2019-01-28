@@ -2,7 +2,7 @@ RRH aims to remove boilerplate when doing common network operations with Redux. 
 - helpers to trigger requests by dispatching actions, and dispatching actions when request resolve.
 - reducer to automatically store requests state (loading, error), to use directly in components
 - plugins
-    + [RRH-auth](https://github.com/gggdomi/rrh-auth): store credentials, authenticate requests and 
+    + [RRH-auth](https://github.com/gggdomi/rrh-auth): store credentials, authenticate requests and redirect to login if needed.
     + [RRH-alerts](https://github.com/gggdomi/rrh-alerts): display notifications when requests resolve.
 
 ## Installation
