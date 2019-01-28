@@ -9,6 +9,8 @@ RRH aims to remove boilerplate when doing common network operations with Redux. 
 
 RRH heavily relies on [redux-saga](https://github.com/redux-saga/redux-saga) and requires it to bet set up.
 
+`yarn add @gggdomi/rrh`
+
 ## Setup
 
 #### Configure redux-saga
