@@ -2,12 +2,10 @@
 
 import axios from 'axios'
 
-import rrh from './'
-
-export const axiosHelper = action => {
+export const axiosHelper = (rrh, action) => {
   let url =
-    !action.ignoreBaseURL && rrh.baseURL && !action.route.startsWith('http')
-      ? rrh.baseURL
+    !action.ignoreBaseURL && rrh.options.baseURL && !action.route.startsWith('http')
+      ? rrh.options.baseURL
       : ''
   url += action.route
 

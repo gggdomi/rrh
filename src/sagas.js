@@ -2,19 +2,18 @@
 
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { axiosHelper } from './requests'
-//import { formatError } from './misc'
-import { rrhActions, rrhStartRegex } from './'
+import { rrhStartRegex } from './misc'
 
-export function* networkingSaga() {
+export const makeNetworkingSaga = rrh => function* networkingSaga() {
   yield takeEvery(action => action.type.match(rrhStartRegex), function*(
     action
   ) {
-    const actions = rrhActions[action.groupName]
+    const actions = rrh.actions[action.groupName]
 
     if (!action.route) {
       yield put(actions.Fail(`No route in ${action.type}`, action.reqId))
     } else {
-      const { response, error } = yield call(axiosHelper, action)
+      const { response, error } = yield call(axiosHelper, rrh, action)
 
       if (response) {
         if (actions.hasPresuccess)
@@ -28,5 +27,3 @@ export function* networkingSaga() {
     }
   })
 }
-
-export default [networkingSaga]

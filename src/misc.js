@@ -10,3 +10,12 @@ export const formatError = err => {
   }
   return 'Problème de connexion, veuillez réessayer'
 }
+
+export const editReqIds = (reqIds, reqId, value) => {
+  return { ...reqIds, [reqId]: value }
+}
+
+
+export const rrhStartRegex = /@RRH\/(.+)_START/
+export const rrhSuccessRegex = /@RRH\/(.+)_SUCCESS/
+export const rrhFailRegex = /@RRH\/(.+)_FAIL/

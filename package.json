@@ -1,6 +1,6 @@
 {
   "name": "@gggdomi/rrh",
-  "version": "0.2.1",
+  "version": "0.3.2",
   "repository": "github:gggdomi/rrh",
   "description": "Helpers to remove boilerplate when doing common network operations with Redux.",
   "license": "MIT",
