@@ -5,6 +5,7 @@ import { makeNetworkingSaga } from './sagas'
 const defaultOptions = {
   baseURL: null,
   getErrorMessage: formatError,
+  extractError: error => error
 }
 
 export const createRRH = ({ options, plugins = [] }) => {
@@ -76,7 +77,6 @@ export const createRRH = ({ options, plugins = [] }) => {
     const preSuccessAction = (response, startAction) => {
       return {
         type: actionTypes.PRESUCCESS,
-        response,
         rawData: response.data,
         reqId: startAction.reqId,
         startAction,
@@ -87,7 +87,6 @@ export const createRRH = ({ options, plugins = [] }) => {
     const successAction = (response, startAction) => {
       let action = {
         type: actionTypes.SUCCESS,
-        response,
         data: response.data,
         reqId: startAction.reqId,
         startAction,
@@ -105,8 +104,7 @@ export const createRRH = ({ options, plugins = [] }) => {
     const failAction = (error, startAction) => {
       let action = {
         type: actionTypes.FAIL,
-        response: error.response,
-        error: error,
+        error: rrh.options.extractError(error),
         reqId: startAction.reqId,
         startAction,
         groupName,
